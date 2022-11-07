@@ -1,0 +1,9 @@
+.buttons {
+  color: #FFFFFF;
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+
+.buttons:hover {
+  opacity: 0.8;
+}

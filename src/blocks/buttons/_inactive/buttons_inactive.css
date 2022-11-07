@@ -1,0 +1,10 @@
+.buttons_inactive {
+  background-color: #FFFFFF;
+  color: #000000;
+  opacity: 0.2;
+  border: 1px solid #000000;
+}
+
+.buttons_inactive:hover {
+  opacity: 0.2;
+}
