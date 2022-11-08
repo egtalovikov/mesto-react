@@ -24,7 +24,7 @@ function App() {
   }
 
   function handleCardClick(card) {
-    setCard(card.link);
+    setCard(card);
   }
 
   function closeAllPopups(evt) {

@@ -4,8 +4,8 @@ function ImagePopup(props) {
       <div className="popup__image-container">
         <button type="button" aria-label="Закрытие попапа" className="popup__close-button buttons"></button>
         <figure className="popup__figure">
-          <img src={props.card} alt="" className="popup__image" />
-          <figcaption className="popup__image-caption"></figcaption>
+          <img src={props.card ? props.card.link : ''} alt={props.card.name} className="popup__image" />
+          <figcaption className="popup__image-caption">{props.card.name}</figcaption>
         </figure>
       </div>
     </div>
