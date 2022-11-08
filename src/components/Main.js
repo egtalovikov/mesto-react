@@ -1,5 +1,6 @@
 import React from 'react';
 import api from '../utils/api'
+import Card from './Card';
 
 function Main(props) {
   const [userName, setUserName] = React.useState('Name');
@@ -38,18 +39,8 @@ function Main(props) {
         <button onClick={props.onAddPlace} type="button" aria-label="Добавление карточки" className="profile__add-button buttons"></button>
       </section>
       <section className="posts" aria-label="посты">
-        {cards.map((item, i) => (
-                      <article className="post" key = {i}>
-                      <img src={item.link} alt={item.name} className="post__photo" />
-                      <button type="button" aria-label="Удаление карточки" className="post__delete-button"></button>
-                      <div className="post__bottom">
-                        <h2 className="post__title">{item.name}</h2>
-                        <div className="post__like-block">
-                          <button type="button" aria-label="Лайк" className="post__like"></button>
-                          <p className="post__like-counter">{item.likes.length}</p>
-                        </div>
-                      </div>
-                    </article>
+        {cards.map((item) => (
+          <Card card = {item} key = {item._id}/>
         ))}
       </section>
     </main>
