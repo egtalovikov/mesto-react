@@ -41,22 +41,15 @@ function App() {
       <Header />
       <Main onEditAvatar={handleEditAvatarClick} onEditProfile={handleEditProfileClick} onAddPlace={handleAddPlaceClick} onCardClick={handleCardClick} />
       <Footer />
-      <PopupWithForm isOpen={isEditAvatarPopupOpen} name={'avatar'} title={'Обновить аватар'} onClose={closeAllPopups}>
+      <PopupWithForm isOpen={isEditAvatarPopupOpen} name={'avatar'} title={'Обновить аватар'} buttonText={'Сохранить'} onClose={closeAllPopups}>
         <div className="popup__field">
           <input type="url" placeholder="Ссылка на аватар" name="avatar" className="popup__input popup__input_type_avatar"
             id="avatar-input" required />
           <span className="popup__error avatar-input-error"></span>
         </div>
-        <button type="submit" className="popup__button buttons">
-          Сохранить
-        </button>
       </PopupWithForm>
-      <PopupWithForm name={'confirmation'} title={'Вы уверены?'} onClose={closeAllPopups}>
-        <button type="button" className="popup__button buttons">
-          Да
-        </button>
-      </PopupWithForm>
-      <PopupWithForm isOpen={isAddPlacePopupOpen} name={'add'} title={'Новое место'} onClose={closeAllPopups}>
+      <PopupWithForm name={'confirmation'} title={'Вы уверены?'} buttonText={'Да'} onClose={closeAllPopups} />
+      <PopupWithForm isOpen={isAddPlacePopupOpen} name={'add'} title={'Новое место'} buttonText={'Создать'} onClose={closeAllPopups}>
         <div className="popup__field">
           <input type="text" placeholder="Название" name="postname" className="popup__input popup__input_type_postname"
             id="postname-input" minLength="2" maxLength="30" required />
@@ -67,11 +60,8 @@ function App() {
             id="link-input" required />
           <span className="popup__error link-input-error"></span>
         </div>
-        <button type="submit" className="popup__button buttons">
-          Создать
-        </button>
       </PopupWithForm>
-      <PopupWithForm isOpen={isEditProfilePopupOpen} name={'edit'} title={'Редактировать профиль'} onClose={closeAllPopups}>
+      <PopupWithForm isOpen={isEditProfilePopupOpen} name={'edit'} title={'Редактировать профиль'} buttonText={'Сохранить'} onClose={closeAllPopups}>
         <div className="popup__field">
           <input type="text" placeholder="Имя" name="name" className="popup__input popup__input_type_name" id="name-input"
             required minLength="2" maxLength="40" />
@@ -82,9 +72,6 @@ function App() {
             required minLength="2" maxLength="200" />
           <span className="popup__error about-input-error"></span>
         </div>
-        <button type="submit" className="popup__button buttons">
-          Сохранить
-        </button>
       </PopupWithForm>
 
       <ImagePopup card={selectedCard} onClose={closeAllPopups} />
