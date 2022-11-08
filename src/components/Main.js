@@ -5,15 +5,23 @@ function Main(props) {
   const [userName, setUserName] = React.useState('Name');
   const [userDescription, setUserDescription] = React.useState('');
   const [userAvatar, setUserAvatar] = React.useState('#');
+  const [cards, setCards] = React.useState([]);
 
   React.useEffect(() => {
-    api.loadUserInfo()
+    Promise.all([
+
+      api.loadUserInfo(),
+    
+      api.getInitialCards()
+    
+    ])
     .then((values) => {
-      setUserName(values.name);
-      setUserDescription(values.about);
-      setUserAvatar(values.avatar)
+      setUserName(values[0].name);
+      setUserDescription(values[0].about);
+      setUserAvatar(values[0].avatar);
+      setCards(values[1])
     })
-  })
+  }, [])
 
   return (
     <main className="content">
@@ -30,6 +38,19 @@ function Main(props) {
         <button onClick={props.onAddPlace} type="button" aria-label="Добавление карточки" className="profile__add-button buttons"></button>
       </section>
       <section className="posts" aria-label="посты">
+        {cards.map((item, i) => (
+                      <article className="post" key = {i}>
+                      <img src={item.link} alt={item.name} className="post__photo" />
+                      <button type="button" aria-label="Удаление карточки" className="post__delete-button"></button>
+                      <div className="post__bottom">
+                        <h2 className="post__title">{item.name}</h2>
+                        <div className="post__like-block">
+                          <button type="button" aria-label="Лайк" className="post__like"></button>
+                          <p className="post__like-counter">{item.likes.length}</p>
+                        </div>
+                      </div>
+                    </article>
+        ))}
       </section>
     </main>
   )
