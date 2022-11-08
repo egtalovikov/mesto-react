@@ -37,47 +37,47 @@ function App() {
           <Main onEditAvatar={handleEditAvatarClick} onEditProfile={handleEditProfileClick} onAddPlace={handleAddPlaceClick} />
           <Footer />
           <PopupWithForm isOpen={isEditAvatarPopupOpen} name={'avatar'} title={'Обновить аватар'} onClose={closeAllPopups}>
-            <div class="popup__field">
-              <input type="url" placeholder="Ссылка на аватар" name="avatar" class="popup__input popup__input_type_avatar"
+            <div className="popup__field">
+              <input type="url" placeholder="Ссылка на аватар" name="avatar" className="popup__input popup__input_type_avatar"
                 id="avatar-input" required />
-              <span class="popup__error avatar-input-error"></span>
+              <span className="popup__error avatar-input-error"></span>
             </div>
-            <button type="submit" class="popup__button buttons">
+            <button type="submit" className="popup__button buttons">
               Сохранить
             </button>
           </PopupWithForm>
           <PopupWithForm name={'confirmation'} title={'Вы уверены?'} onClose={closeAllPopups}>
-            <button type="button" class="popup__button buttons">
+            <button type="button" className="popup__button buttons">
               Да
             </button>
           </PopupWithForm>
           <PopupWithForm isOpen={isAddPlacePopupOpen} name={'add'} title={'Новое место'} onClose={closeAllPopups}>
-            <div class="popup__field">
-              <input type="text" placeholder="Название" name="postname" class="popup__input popup__input_type_postname"
-                id="postname-input" minlength="2" maxlength="30" required />
-              <span class="popup__error postname-input-error"></span>
+            <div className="popup__field">
+              <input type="text" placeholder="Название" name="postname" className="popup__input popup__input_type_postname"
+                id="postname-input" minLength="2" maxLength="30" required />
+              <span className="popup__error postname-input-error"></span>
             </div>
-            <div class="popup__field">
-              <input type="url" placeholder="Ссылка на картинку" name="link" class="popup__input popup__input_type_link"
+            <div className="popup__field">
+              <input type="url" placeholder="Ссылка на картинку" name="link" className="popup__input popup__input_type_link"
                 id="link-input" required />
-              <span class="popup__error link-input-error"></span>
+              <span className="popup__error link-input-error"></span>
             </div>
-            <button type="submit" class="popup__button buttons">
+            <button type="submit" className="popup__button buttons">
               Создать
             </button>
           </PopupWithForm>
           <PopupWithForm isOpen={isEditProfilePopupOpen} name={'edit'} title={'Редактировать профиль'} onClose={closeAllPopups}>
-            <div class="popup__field">
-              <input type="text" placeholder="Имя" name="name" class="popup__input popup__input_type_name" id="name-input"
-                required minlength="2" maxlength="40" />
-              <span class="popup__error name-input-error"></span>
+            <div className="popup__field">
+              <input type="text" placeholder="Имя" name="name" className="popup__input popup__input_type_name" id="name-input"
+                required minLength="2" maxLength="40" />
+              <span className="popup__error name-input-error"></span>
             </div>
-            <div class="popup__field">
-              <input type="text" placeholder="О Себе" name="about" class="popup__input popup__input_type_about" id="about-input"
-                required minlength="2" maxlength="200" />
-              <span class="popup__error about-input-error"></span>
+            <div className="popup__field">
+              <input type="text" placeholder="О Себе" name="about" className="popup__input popup__input_type_about" id="about-input"
+                required minLength="2" maxLength="200" />
+              <span className="popup__error about-input-error"></span>
             </div>
-            <button type="submit" class="popup__button buttons">
+            <button type="submit" className="popup__button buttons">
               Сохранить
             </button>
           </PopupWithForm>
