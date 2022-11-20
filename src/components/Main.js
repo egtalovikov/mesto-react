@@ -1,32 +1,23 @@
 import React from 'react';
 import api from '../utils/api'
 import Card from './Card';
+import { CurrentUserContext } from '../contexts/CurrentUserContext';
 
 function Main(props) {
-  const [userName, setUserName] = React.useState('Name');
-  const [userDescription, setUserDescription] = React.useState('');
-  const [userAvatar, setUserAvatar] = React.useState('#');
   const [cards, setCards] = React.useState([]);
+  const currentUser = React.useContext(CurrentUserContext);
 
   React.useEffect(() => {
-    Promise.all([
 
-      api.loadUserInfo(),
-    
-      api.getInitialCards()
-    
-    ])
-    .then((values) => {
-      setUserName(values[0].name);
-      setUserDescription(values[0].about);
-      setUserAvatar(values[0].avatar);
-      setCards(values[1])
-    })
-    .catch((err) => {
+    api.getInitialCards()
+      .then((values) => {
+        setCards(values)
+      })
+      .catch((err) => {
 
-      console.log(err);
-  
-    })
+        console.log(err);
+
+      })
   }, [])
 
   return (
@@ -34,18 +25,18 @@ function Main(props) {
       <section className="profile" aria-label="профиль">
         <div className="profile__avatar-block">
           <button onClick={props.onEditAvatar} type="button" aria-label="Смена аватара" className="profile__avatar-change-button buttons"></button>
-          <img src={userAvatar} alt="Аватар" className="profile__avatar" />
+          <img src={currentUser.avatar} alt="Аватар" className="profile__avatar" />
         </div>
         <div className="profile__info">
-          <h1 className="profile__name">{userName}</h1>
+          <h1 className="profile__name">{currentUser.name}</h1>
           <button onClick={props.onEditProfile} type="button" aria-label="Редактирование профиля" className="profile__edit-button buttons"></button>
-          <p className="profile__about">{userDescription}</p>
+          <p className="profile__about">{currentUser.about}</p>
         </div>
         <button onClick={props.onAddPlace} type="button" aria-label="Добавление карточки" className="profile__add-button buttons"></button>
       </section>
       <section className="posts" aria-label="посты">
         {cards.map((item) => (
-          <Card card = {item} key = {item._id} onCardClick={props.onCardClick}/>
+          <Card card={item} key={item._id} onCardClick={props.onCardClick} />
         ))}
       </section>
     </main>

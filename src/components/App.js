@@ -11,11 +11,19 @@ function App() {
   const [isEditProfilePopupOpen, setEditProfile] = React.useState(false);
   const [isAddPlacePopupOpen, setAddPlace] = React.useState(false);
   const [isEditAvatarPopupOpen, setEditAvatar] = React.useState(false);
-  const [selectedCard, setCard] = React.useState({name: '', link: ''});;
-  const [currentUser, setCurrentUser] = React.useState('');;
+  const [selectedCard, setCard] = React.useState({ name: '', link: '' });;
+  const [currentUser, setCurrentUser] = React.useState({});;
 
   React.useEffect(() => {
-    setCurrentUser(api.loadUserInfo());
+    api.loadUserInfo()
+      .then(res => {
+        setCurrentUser(res)
+      })
+      .catch((err) => {
+
+        console.log(err);
+
+      })
   }, [])
 
   function handleEditAvatarClick() {
@@ -39,7 +47,7 @@ function App() {
       setEditAvatar(false);
       setEditProfile(false);
       setAddPlace(false);
-      setCard({name: '', link: ''});
+      setCard({ name: '', link: '' });
     }
   }
 
