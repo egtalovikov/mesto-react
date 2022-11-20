@@ -1,4 +1,5 @@
 import React from 'react';
+import api from '../utils/api'
 import Header from './Header';
 import Main from './Main';
 import Footer from './Footer'
@@ -10,6 +11,11 @@ function App() {
   const [isAddPlacePopupOpen, setAddPlace] = React.useState(false);
   const [isEditAvatarPopupOpen, setEditAvatar] = React.useState(false);
   const [selectedCard, setCard] = React.useState({name: '', link: ''});;
+  const [currentUser, setCurrentUser] = React.useState('');;
+
+  React.useEffect(() => {
+    setCurrentUser(api.loadUserInfo());
+  }, [])
 
   function handleEditAvatarClick() {
     setEditAvatar(true);
