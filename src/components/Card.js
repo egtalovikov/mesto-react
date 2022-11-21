@@ -21,13 +21,17 @@ function Card(props) {
   }
 
   function handleLikeClick() {
-    props.onCardLike(props.card)
+    props.onCardLike(props.card);
+  }
+
+  function handleDeleteClick() {
+    props.onCardDelete(props.card);
   }
 
   return (
     <article className="post">
       <img onClick={handleClick} src={props.card.link} alt={props.card.name} className="post__photo" />
-      <button type="button" aria-label="Удаление карточки" className={cardDeleteButtonClassName}></button>
+      <button onClick={handleDeleteClick} type="button" aria-label="Удаление карточки" className={cardDeleteButtonClassName}></button>
       <div className="post__bottom">
         <h2 className="post__title">{props.card.name}</h2>
         <div className="post__like-block">
