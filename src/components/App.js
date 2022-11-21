@@ -52,6 +52,19 @@ function App() {
     }
   }
 
+  function handleUpdateUser(user) {
+    api.editProfile(user)
+    .then(res => {
+      setCurrentUser(res);
+      setEditProfile(false);
+    })
+    .catch((err) => {
+
+      console.log(err);
+
+    })
+  }
+
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <Header />
@@ -77,7 +90,7 @@ function App() {
           <span className="popup__error link-input-error"></span>
         </div>
       </PopupWithForm>
-      <EditProfilePopup isOpen={isEditProfilePopupOpen} onClose={closeAllPopups} />
+      <EditProfilePopup isOpen={isEditProfilePopupOpen} onClose={closeAllPopups} onUpdateUser={handleUpdateUser} />
       <ImagePopup card={selectedCard} onClose={closeAllPopups} />
     </CurrentUserContext.Provider>
   );
