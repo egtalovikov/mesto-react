@@ -7,6 +7,7 @@ import Footer from './Footer'
 import PopupWithForm from './PopupWithForm';
 import ImagePopup from './ImagePopup';
 import EditProfilePopup from './EditProfilePopup';
+import EditAvatarPopup from './EditAvatarPopup';
 
 function App() {
   const [isEditProfilePopupOpen, setEditProfile] = React.useState(false);
@@ -70,13 +71,7 @@ function App() {
       <Header />
       <Main onEditAvatar={handleEditAvatarClick} onEditProfile={handleEditProfileClick} onAddPlace={handleAddPlaceClick} onCardClick={handleCardClick} />
       <Footer />
-      <PopupWithForm isOpen={isEditAvatarPopupOpen} name={'avatar'} title={'Обновить аватар'} buttonText={'Сохранить'} onClose={closeAllPopups}>
-        <div className="popup__field">
-          <input type="url" placeholder="Ссылка на аватар" name="avatar" className="popup__input popup__input_type_avatar"
-            id="avatar-input" required />
-          <span className="popup__error avatar-input-error"></span>
-        </div>
-      </PopupWithForm>
+      <EditAvatarPopup isOpen={isEditAvatarPopupOpen} onClose={closeAllPopups} />
       <PopupWithForm name={'confirmation'} title={'Вы уверены?'} buttonText={'Да'} onClose={closeAllPopups} />
       <PopupWithForm isOpen={isAddPlacePopupOpen} name={'add'} title={'Новое место'} buttonText={'Создать'} onClose={closeAllPopups}>
         <div className="popup__field">
