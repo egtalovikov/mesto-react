@@ -121,13 +121,26 @@ function App() {
       })
   }
 
+  function handleAddPlaceSubmit(card) {
+    api.addCard(card)
+    .then((newCard) => {
+      setCards([newCard, ...cards]);
+      setAddPlace(false);
+    })
+    .catch((err) => {
+
+      console.log(err);
+
+    })
+  }
+
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <Header />
       <Main onEditAvatar={handleEditAvatarClick} onEditProfile={handleEditProfileClick} onAddPlace={handleAddPlaceClick} onCardClick={handleCardClick} cards={cards} onCardLike={handleCardLike} onCardDelete={handleCardDelete} />
       <Footer />
       <EditAvatarPopup isOpen={isEditAvatarPopupOpen} onClose={closeAllPopups} onUpdateAvatar={handleUpdateAvatar} />
-      <AddPlacePopup isOpen={isAddPlacePopupOpen} onClose={closeAllPopups} />
+      <AddPlacePopup isOpen={isAddPlacePopupOpen} onClose={closeAllPopups} onAddPlace={handleAddPlaceSubmit} />
       <PopupWithForm name={'confirmation'} title={'Вы уверены?'} buttonText={'Да'} onClose={closeAllPopups} />
       <EditProfilePopup isOpen={isEditProfilePopupOpen} onClose={closeAllPopups} onUpdateUser={handleUpdateUser} />
       <ImagePopup card={selectedCard} onClose={closeAllPopups} />
