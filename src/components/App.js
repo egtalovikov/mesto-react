@@ -8,6 +8,7 @@ import PopupWithForm from './PopupWithForm';
 import ImagePopup from './ImagePopup';
 import EditProfilePopup from './EditProfilePopup';
 import EditAvatarPopup from './EditAvatarPopup';
+import AddPlacePopup from './AddPlacePopup';
 
 function App() {
   const [cards, setCards] = React.useState([]);
@@ -97,14 +98,14 @@ function App() {
     const isLiked = card.likes.some(i => i._id === currentUser._id);
 
     api.changeLikeCardStatus(card._id, !isLiked)
-    .then((newCard) => {
-      setCards((state) => state.map((c) => c._id === card._id ? newCard : c));
-    })
-    .catch((err) => {
+      .then((newCard) => {
+        setCards((state) => state.map((c) => c._id === card._id ? newCard : c));
+      })
+      .catch((err) => {
 
-      console.log(err);
+        console.log(err);
 
-    })
+      })
   }
 
   function handleCardDelete(card) {
@@ -126,19 +127,8 @@ function App() {
       <Main onEditAvatar={handleEditAvatarClick} onEditProfile={handleEditProfileClick} onAddPlace={handleAddPlaceClick} onCardClick={handleCardClick} cards={cards} onCardLike={handleCardLike} onCardDelete={handleCardDelete} />
       <Footer />
       <EditAvatarPopup isOpen={isEditAvatarPopupOpen} onClose={closeAllPopups} onUpdateAvatar={handleUpdateAvatar} />
+      <AddPlacePopup isOpen={isAddPlacePopupOpen} onClose={closeAllPopups} />
       <PopupWithForm name={'confirmation'} title={'Вы уверены?'} buttonText={'Да'} onClose={closeAllPopups} />
-      <PopupWithForm isOpen={isAddPlacePopupOpen} name={'add'} title={'Новое место'} buttonText={'Создать'} onClose={closeAllPopups}>
-        <div className="popup__field">
-          <input type="text" placeholder="Название" name="postname" className="popup__input popup__input_type_postname"
-            id="postname-input" minLength="2" maxLength="30" required />
-          <span className="popup__error postname-input-error"></span>
-        </div>
-        <div className="popup__field">
-          <input type="url" placeholder="Ссылка на картинку" name="link" className="popup__input popup__input_type_link"
-            id="link-input" required />
-          <span className="popup__error link-input-error"></span>
-        </div>
-      </PopupWithForm>
       <EditProfilePopup isOpen={isEditProfilePopupOpen} onClose={closeAllPopups} onUpdateUser={handleUpdateUser} />
       <ImagePopup card={selectedCard} onClose={closeAllPopups} />
     </CurrentUserContext.Provider>
