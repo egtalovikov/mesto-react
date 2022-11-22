@@ -66,12 +66,25 @@ function App() {
     })
   }
 
+  function handleUpdateAvatar(avatar) {
+    api.changeAvatar(avatar)
+    .then((res) => {
+      setCurrentUser(res);
+      setEditAvatar(false);
+    })
+    .catch((err) => {
+
+      console.log(err);
+
+    })
+  }
+
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <Header />
       <Main onEditAvatar={handleEditAvatarClick} onEditProfile={handleEditProfileClick} onAddPlace={handleAddPlaceClick} onCardClick={handleCardClick} />
       <Footer />
-      <EditAvatarPopup isOpen={isEditAvatarPopupOpen} onClose={closeAllPopups} />
+      <EditAvatarPopup isOpen={isEditAvatarPopupOpen} onClose={closeAllPopups} onUpdateAvatar={handleUpdateAvatar} />
       <PopupWithForm name={'confirmation'} title={'Вы уверены?'} buttonText={'Да'} onClose={closeAllPopups} />
       <PopupWithForm isOpen={isAddPlacePopupOpen} name={'add'} title={'Новое место'} buttonText={'Создать'} onClose={closeAllPopups}>
         <div className="popup__field">
