@@ -11,46 +11,45 @@ class Api {
     return res.json();
   }
 
+  _request(url, options) {
+    return fetch(url, options).then(this._getResponseData)
+  }
+
   loadUserInfo() {
-    return fetch(`${this._baseUrl}/users/me`, {
+    return this._request(`${this._baseUrl}/users/me`, {
       headers: this._headers
     })
-      .then(this._getResponseData)
   }
 
   changeLikeCardStatus(id, state) {
     if (state) {
-      return fetch(`${this._baseUrl}/cards/${id}/likes`, {
+      return this._request(`${this._baseUrl}/cards/${id}/likes`, {
         method: 'PUT',
         headers: this._headers
       })
-        .then(this._getResponseData)
     } else {
-      return fetch(`${this._baseUrl}/cards/${id}/likes`, {
+      return this._request(`${this._baseUrl}/cards/${id}/likes`, {
         method: 'DELETE',
         headers: this._headers
       })
-        .then(this._getResponseData)
     }
   }
   
   deleteCard(idNumber) {
-    return fetch(`${this._baseUrl}/cards/${idNumber}`, {
+    return this._request(`${this._baseUrl}/cards/${idNumber}`, {
       method: 'DELETE',
       headers: this._headers
     })
-      .then(this._getResponseData)
   }
 
   getInitialCards() {
-    return fetch(`${this._baseUrl}/cards`, {
+    return this._request(`${this._baseUrl}/cards`, {
       headers: this._headers
     })
-      .then(this._getResponseData)
   }
 
   addCard(inputValues) {
-    return fetch(`${this._baseUrl}/cards`, {
+    return this._request(`${this._baseUrl}/cards`, {
       method: 'POST',
       headers: this._headers,
       body: JSON.stringify({
@@ -58,11 +57,10 @@ class Api {
         link: inputValues.link
       }),
     })
-      .then(this._getResponseData)
   }
 
   editProfile(inputValues) {
-    return fetch(`${this._baseUrl}/users/me`, {
+    return this._request(`${this._baseUrl}/users/me`, {
       method: 'PATCH',
       headers: this._headers,
       body: JSON.stringify({
@@ -70,18 +68,16 @@ class Api {
         about: inputValues.about
       })
     })
-      .then(this._getResponseData)
   }
 
   changeAvatar(inputValues) {
-    return fetch(`${this._baseUrl}/users/me/avatar`, {
+    return this._request(`${this._baseUrl}/users/me/avatar`, {
       method: 'PATCH',
       headers: this._headers,
       body: JSON.stringify({
         avatar: inputValues.avatar
       })
     })
-      .then(this._getResponseData)
   }
 }
 

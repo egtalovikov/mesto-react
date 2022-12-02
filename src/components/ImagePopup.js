@@ -1,11 +1,11 @@
-function ImagePopup(props) {
+function ImagePopup({ card, onClose }) {
   return (
-    <div onClick={(evt) => props.onClose(evt)} className={`popup popup_image ${props.card.link ? 'popup_opened' : ''}`}>
+    <div onClick={(evt) => onClose(evt)} className={`popup popup_image ${card.link ? 'popup_opened' : ''}`}>
       <div className="popup__image-container">
         <button type="button" aria-label="Закрытие попапа" className="popup__close-button buttons"></button>
         <figure className="popup__figure">
-          <img src={props.card.link} alt={props.card.name} className="popup__image" />
-          <figcaption className="popup__image-caption">{props.card.name}</figcaption>
+          <img src={card.link} alt={card.name} className="popup__image" />
+          <figcaption className="popup__image-caption">{card.name}</figcaption>
         </figure>
       </div>
     </div>
